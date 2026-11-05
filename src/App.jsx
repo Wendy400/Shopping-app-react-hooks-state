@@ -2,35 +2,66 @@ import React, { useState } from 'react'
 import ProductList from './components/ProductList'
 import DarkModeToggle from './components/DarkModeToggle'
 import Cart from './components/Cart'
+import styles from './styles/DarkMode.module.css'
 
 const App = () => {
-  // TODO: Implement state for dark mode toggle
+  // 1. State for dark mode (defaults to false / light mode)
+  const [isDarkMode, setIsDarkMode] = useState(false)
 
-  // TODO: Implement state for cart management
+  // 2. State for cart items array
+  const [cartItems, setCartItems] = useState([])
 
-  // TODO: Implement state for category filtering
+  // 3. State for category filter (defaults to "all")
+  const [selectedCategory, setSelectedCategory] = useState('all')
+
+  // Handler functions
+  const toggleDarkMode = () => {
+    setIsDarkMode((prevMode) => !prevMode)
+  }
+
+  const handleAddToCart = (productName) => {
+    setCartItems((prevItems) => [...prevItems, productName])
+  }
+
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value)
+  }
 
   return (
-    <div>
+    <div
+      className={`${styles.app} ${
+        isDarkMode ? styles.darkMode : styles.lightMode
+      }`}
+    >
       <h1>🛒 Shopping App</h1>
       <p>
         Welcome! Your task is to implement filtering, cart management, and dark
         mode.
       </p>
 
-      {/* TODO: Render DarkModeToggle and implement dark mode functionality */}
+      {/* Dark Mode Toggle Component */}
+      <DarkModeToggle isDarkMode={isDarkMode} onToggle={toggleDarkMode} />
 
-      {/* TODO: Implement category filter dropdown */}
-      <label>Filter by Category: </label>
-      <select>
+      {/* Category Filter Dropdown */}
+      <label htmlFor="category-select">Filter by Category: </label>
+      <select
+        id="category-select"
+        value={selectedCategory}
+        onChange={handleCategoryChange}
+      >
         <option value="all">All</option>
         <option value="Fruits">Fruits</option>
         <option value="Dairy">Dairy</option>
       </select>
 
-      <ProductList />
+      {/* Product List Component with Filtering & Add to Cart callback */}
+      <ProductList
+        selectedCategory={selectedCategory}
+        onAddToCart={handleAddToCart}
+      />
 
-      {/* TODO: Implement and render Cart component */}
+      {/* Cart Component displaying added items */}
+      <Cart items={cartItems} />
     </div>
   )
 }
