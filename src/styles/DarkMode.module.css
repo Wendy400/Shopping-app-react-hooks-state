@@ -1,63 +1,33 @@
+
+/* General application styling */
 .app {
-  box-sizing: border-box;
   min-height: 100vh;
-  width: 100%;
-  padding: 2rem;
-  transition:
-    background-color 200ms ease,
-    color 200ms ease;
+  padding: 30px;
 }
 
+/* Light theme */
 .lightMode {
-  color: #213547;
   background-color: #f5f7fa;
-  color-scheme: light;
-  --product-card-background: #fff;
-  --product-card-text: #1e293b;
-  --product-card-border: #cbd5e1;
-  --out-of-stock-background: #fff7f7;
-  --out-of-stock-border: #fca5a5;
-  --out-of-stock-text: #b91c1c;
+  color: #213547;
+  --card-background: white;
+  --card-text: #213547;
+  --card-border: #cbd5e1;
+
+   --unavailable-background: #fff1f2;
+  --unavailable-text: #9f1239;
+  --unavailable-border: #fda4af;
+
 }
 
+/* Dark theme */
 .darkMode {
-  color: #f1f5f9;
   background-color: #17212b;
-  color-scheme: dark;
-  --product-card-background: #243342;
-  --product-card-text: #f1f5f9;
-  --product-card-border: #475569;
-  --out-of-stock-background: #3b292d;
-  --out-of-stock-border: #a44c55;
-  --out-of-stock-text: #fecaca;
-}
+  color: white;
+  --card-background: #243342;
+  --card-text: #f1f5f9;
+  --card-border: #475569;
 
-.toggleButton {
-  margin-bottom: 1.25rem;
-  border: 1px solid currentColor;
-  border-radius: 0.5rem;
-  padding: 0.65rem 1rem;
-  color: inherit;
-  background: transparent;
-  cursor: pointer;
-  font: inherit;
-  transition:
-    background-color 150ms ease,
-    transform 150ms ease;
-}
-
-.toggleButton:hover {
-  background-color: rgb(127 127 127 / 15%);
-}
-
-.toggleButton:focus-visible {
-  outline: 3px solid #60a5fa;
-  outline-offset: 3px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .app,
-  .toggleButton {
-    transition: none;
-  }
+  --unavailable-background: #422c33;
+  --unavailable-text: #fecdd3;
+  --unavailable-border: #9f5363;
 }

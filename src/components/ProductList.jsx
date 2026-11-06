@@ -1,5 +1,6 @@
 import React from 'react'
 import ProductCard from './ProductCard'
+import styles from '../styles/ProductList.module.css'
 
 export const sampleProducts = [
   { id: 1, name: 'Apple', price: '$1.00', category: 'Fruits', inStock: true },
@@ -21,13 +22,15 @@ const ProductList = ({ selectedCategory = 'all', onAddToCart }) => {
       {filteredProducts.length === 0 ? (
         <p>No products available</p>
       ) : (
-        filteredProducts.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            onAddToCart={onAddToCart}
-          />
-        ))
+        <div className={styles.productGrid}>
+          {filteredProducts.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              onAddToCart={onAddToCart}
+            />
+          ))}
+        </div>
       )}
     </div>
   )
